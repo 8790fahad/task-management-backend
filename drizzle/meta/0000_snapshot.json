@@ -1,0 +1,71 @@
+{
+  "id": "0000",
+  "prevId": null,
+  "version": "4",
+  "dialect": "postgresql",
+  "tables": {
+    "tasks": {
+      "name": "tasks",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": {
+            "name": "gen_random_uuid()",
+            "args": []
+          }
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "notNull": false
+        },
+        "due_date": {
+          "name": "due_date",
+          "type": "timestamp with time zone",
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar(20)",
+          "notNull": true,
+          "default": "pending"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "primaryKey": {
+        "name": "tasks_pkey",
+        "columns": ["id"]
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
+
