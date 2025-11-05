@@ -1,7 +1,7 @@
-import { Task } from '@domain/entities/Task';
-import { ITaskRepository } from '@domain/repositories/ITaskRepository';
-import { TaskStatus } from '@domain/value-objects/TaskStatus';
-import { NotFoundError } from '@application/errors/NotFoundError';
+import { Task } from "@domain/entities/Task";
+import { ITaskRepository } from "@domain/repositories/ITaskRepository";
+import { TaskStatus } from "@domain/value-objects/TaskStatus";
+import { NotFoundError } from "@application/errors/NotFoundError";
 
 export class UpdateTaskUseCase {
   constructor(private readonly taskRepository: ITaskRepository) {}
@@ -31,5 +31,3 @@ export class UpdateTaskUseCase {
     return await this.taskRepository.update(updatedTask);
   }
 }
-
-

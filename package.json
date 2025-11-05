@@ -8,14 +8,14 @@
     "build": "bun build src/index.ts --outdir ./dist --target bun",
     "start": "bun run dist/index.js",
     "db:migrate": "bun run src/infrastructure/database/migrate.ts",
-    "db:generate": "npx drizzle-kit generate",
-    "db:studio": "npx drizzle-kit studio"
+    "db:generate": "node scripts/db-generate.js",
+    "db:studio": "node scripts/db-studio.js"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.1.1",
     "@elysiajs/swagger": "^1.1.4",
-    "drizzle-orm": "^0.33.0",
-    "drizzle-kit": "^0.25.0",
+    "drizzle-orm": "0.33.0",
+    "drizzle-kit": "0.25.0",
     "elysia": "^1.1.23",
     "postgres": "^3.4.4",
     "redis": "^4.7.0",

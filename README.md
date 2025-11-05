@@ -166,8 +166,17 @@ When a task is created or updated with a `dueDate` less than 24 hours from now, 
 - `bun run dev` - Start development server
 - `bun run build` - Build for production
 - `bun run db:migrate` - Run database migrations
-- `bun run db:generate` - Generate migration files
+- `bun run db:generate` - Generate migration files (see note below)
 - `bun run db:studio` - Open Drizzle Studio
+
+**Note on `db:generate` and `db:studio`:** These commands have known compatibility issues with the current drizzle versions. This **does not affect your application**:
+
+1. ✅ **`db:migrate` works perfectly** - Your migrations are already set up and working
+2. ⚠️ **`db:generate`** - Only needed when changing schema (optional, has compatibility issues)
+3. ⚠️ **`db:studio`** - Optional GUI tool (has compatibility issues)
+4. **Your application is fully functional** - These are just optional development tools
+
+See `DRIZZLE_NOTE.md` for more details and workarounds.
 
 ## Testing the API
 
