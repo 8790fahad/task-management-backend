@@ -1,27 +1,27 @@
 # Troubleshooting Guide
 
-## Port 3000 Already in Use
+## Port 3001 Already in Use
 
-If you see the error `EADDRINUSE` or "Port 3000 is already in use", try these solutions:
+If you see the error `EADDRINUSE` or "Port 3001 is already in use", try these solutions:
 
 ### Solution 1: Find and Kill the Process
 
 **macOS/Linux:**
 ```bash
-# Find what's using port 3000
-lsof -ti:3000
+# Find what's using port 3001
+lsof -ti:3001
 
 # Kill the process (replace PID with the number from above)
 kill -9 PID
 
 # Or in one command:
-kill -9 $(lsof -ti:3000)
+kill -9 $(lsof -ti:3001)
 ```
 
 **Alternative:**
 ```bash
 # Using netstat
-netstat -vanp tcp | grep 3000
+netstat -vanp tcp | grep 3001
 
 # Kill using pkill
 pkill -f "bun\|node\|elysia"
@@ -193,7 +193,7 @@ If they persist:
 
 | Issue | Quick Fix |
 |-------|-----------|
-| Port in use | `PORT=3001 bun run dev` or `kill -9 $(lsof -ti:3000)` |
+| Port in use | `PORT=3001 bun run dev` or `kill -9 $(lsof -ti:3001)` |
 | Database connection | `docker-compose restart postgres` |
 | Redis connection | App works without Redis (logs to file only) |
 | Migration errors | `bun run db:migrate` |

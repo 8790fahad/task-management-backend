@@ -4,11 +4,11 @@
 
 The Task Management API is a RESTful service built with Clean Architecture and Domain-Driven Design principles. It provides endpoints for managing tasks with support for due dates, status tracking, and automatic notifications.
 
-**Base URL:** `http://localhost:3000`
+**Base URL:** `http://localhost:3001`
 
 **API Version:** 1.0.0
 
-**Interactive Documentation:** `http://localhost:3000/swagger`
+**Interactive Documentation:** `http://localhost:3001/swagger`
 
 ---
 
@@ -43,6 +43,7 @@ Creates a new task with the provided details. If the due date is within 24 hours
 **Endpoint:** `POST /tasks`
 
 **Request Body:**
+
 ```json
 {
   "title": "Complete project documentation",
@@ -52,6 +53,7 @@ Creates a new task with the provided details. If the due date is within 24 hours
 ```
 
 **Request Schema:**
+
 - `title` (string, required): Task title (1-255 characters)
 - `description` (string, optional): Task description (max 1000 characters)
 - `dueDate` (string, optional): ISO 8601 datetime string (e.g., "2024-12-25T12:00:00Z")
@@ -71,11 +73,13 @@ Creates a new task with the provided details. If the due date is within 24 hours
 ```
 
 **Error Responses:**
+
 - `400 Bad Request`: Validation error (e.g., invalid date format, missing required field)
 
 **Example:**
+
 ```bash
-curl -X POST http://localhost:3000/tasks \
+curl -X POST http://localhost:3001/tasks \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Complete project documentation",
@@ -93,6 +97,7 @@ Retrieves all tasks. Optionally filter by status.
 **Endpoint:** `GET /tasks`
 
 **Query Parameters:**
+
 - `status` (string, optional): Filter by status (`pending` or `completed`)
 
 **Response:** `200 OK`
@@ -121,15 +126,16 @@ Retrieves all tasks. Optionally filter by status.
 ```
 
 **Examples:**
+
 ```bash
 # Get all tasks
-curl http://localhost:3000/tasks
+curl http://localhost:3001/tasks
 
 # Get only completed tasks
-curl http://localhost:3000/tasks?status=completed
+curl http://localhost:3001/tasks?status=completed
 
 # Get only pending tasks
-curl http://localhost:3000/tasks?status=pending
+curl http://localhost:3001/tasks?status=pending
 ```
 
 ---
@@ -141,6 +147,7 @@ Retrieves a specific task by its unique identifier.
 **Endpoint:** `GET /tasks/:id`
 
 **Path Parameters:**
+
 - `id` (string, required): Task UUID
 
 **Response:** `200 OK`
@@ -158,11 +165,13 @@ Retrieves a specific task by its unique identifier.
 ```
 
 **Error Responses:**
+
 - `404 Not Found`: Task with the specified ID does not exist
 
 **Example:**
+
 ```bash
-curl http://localhost:3000/tasks/550e8400-e29b-41d4-a716-446655440000
+curl http://localhost:3001/tasks/550e8400-e29b-41d4-a716-446655440000
 ```
 
 ---
@@ -174,9 +183,11 @@ Updates an existing task. All fields are optional. Only provided fields will be 
 **Endpoint:** `PUT /tasks/:id`
 
 **Path Parameters:**
+
 - `id` (string, required): Task UUID
 
 **Request Body:**
+
 ```json
 {
   "title": "Updated task title",
@@ -187,6 +198,7 @@ Updates an existing task. All fields are optional. Only provided fields will be 
 ```
 
 **Request Schema:**
+
 - `title` (string, optional): Task title (1-255 characters)
 - `description` (string, optional): Task description (max 1000 characters). Can be set to `null`.
 - `dueDate` (string, optional): ISO 8601 datetime string. Can be set to `null`.
@@ -207,12 +219,14 @@ Updates an existing task. All fields are optional. Only provided fields will be 
 ```
 
 **Error Responses:**
+
 - `400 Bad Request`: Validation error
 - `404 Not Found`: Task with the specified ID does not exist
 
 **Example:**
+
 ```bash
-curl -X PUT http://localhost:3000/tasks/550e8400-e29b-41d4-a716-446655440000 \
+curl -X PUT http://localhost:3001/tasks/550e8400-e29b-41d4-a716-446655440000 \
   -H "Content-Type: application/json" \
   -d '{
     "status": "completed"
@@ -228,16 +242,19 @@ Deletes a task by its unique identifier.
 **Endpoint:** `DELETE /tasks/:id`
 
 **Path Parameters:**
+
 - `id` (string, required): Task UUID
 
 **Response:** `204 No Content`
 
 **Error Responses:**
+
 - `404 Not Found`: Task with the specified ID does not exist
 
 **Example:**
+
 ```bash
-curl -X DELETE http://localhost:3000/tasks/550e8400-e29b-41d4-a716-446655440000
+curl -X DELETE http://localhost:3001/tasks/550e8400-e29b-41d4-a716-446655440000
 ```
 
 ---
@@ -248,13 +265,13 @@ curl -X DELETE http://localhost:3000/tasks/550e8400-e29b-41d4-a716-446655440000
 
 ```typescript
 {
-  id: string;              // UUID, auto-generated
-  title: string;           // Required, 1-255 characters
-  description: string | null;  // Optional, max 1000 characters
-  dueDate: string | null;  // ISO 8601 datetime string, optional
-  status: "pending" | "completed";  // Default: "pending"
-  createdAt: string;       // ISO 8601 datetime string
-  updatedAt: string;       // ISO 8601 datetime string
+  id: string; // UUID, auto-generated
+  title: string; // Required, 1-255 characters
+  description: string | null; // Optional, max 1000 characters
+  dueDate: string | null; // ISO 8601 datetime string, optional
+  status: "pending" | "completed"; // Default: "pending"
+  createdAt: string; // ISO 8601 datetime string
+  updatedAt: string; // ISO 8601 datetime string
 }
 ```
 
@@ -279,6 +296,7 @@ The API uses standard HTTP status codes and returns error responses in the follo
 ### Error Types
 
 #### 400 Bad Request - Validation Error
+
 ```json
 {
   "error": "Validation Error",
@@ -287,6 +305,7 @@ The API uses standard HTTP status codes and returns error responses in the follo
 ```
 
 #### 404 Not Found
+
 ```json
 {
   "error": "Not Found",
@@ -295,6 +314,7 @@ The API uses standard HTTP status codes and returns error responses in the follo
 ```
 
 #### 500 Internal Server Error
+
 ```json
 {
   "error": "Internal Server Error",
@@ -315,6 +335,7 @@ When a task is created or updated with a `dueDate` that is less than 24 hours fr
 3. Writes to `logs/notifications.log`
 
 **Notification Format:**
+
 ```
 [2024-12-25T10:00:00.000Z] Notification: Task "Complete project" (ID: 550e8400-e29b-41d4-a716-446655440000) is due within 24 hours. Due date: 2024-12-25T23:59:59.000Z
 ```
@@ -334,7 +355,7 @@ When a task is created or updated with a `dueDate` that is less than 24 hours fr
 
 ```bash
 # 1. Create a task
-TASK_ID=$(curl -s -X POST http://localhost:3000/tasks \
+TASK_ID=$(curl -s -X POST http://localhost:3001/tasks \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Finish documentation",
@@ -345,42 +366,44 @@ TASK_ID=$(curl -s -X POST http://localhost:3000/tasks \
 echo "Created task: $TASK_ID"
 
 # 2. Get all tasks
-curl http://localhost:3000/tasks | jq
+curl http://localhost:3001/tasks | jq
 
 # 3. Get the specific task
-curl http://localhost:3000/tasks/$TASK_ID | jq
+curl http://localhost:3001/tasks/$TASK_ID | jq
 
 # 4. Update the task status
-curl -X PUT http://localhost:3000/tasks/$TASK_ID \
+curl -X PUT http://localhost:3001/tasks/$TASK_ID \
   -H "Content-Type: application/json" \
   -d '{"status": "completed"}' | jq
 
 # 5. Delete the task
-curl -X DELETE http://localhost:3000/tasks/$TASK_ID
+curl -X DELETE http://localhost:3001/tasks/$TASK_ID
 ```
 
 ### Using JavaScript/TypeScript
 
 ```typescript
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = "http://localhost:3001";
 
 // Create task
 const createTask = async () => {
   const response = await fetch(`${BASE_URL}/tasks`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      title: 'New Task',
-      description: 'Task description',
-      dueDate: '2024-12-25T12:00:00Z'
-    })
+      title: "New Task",
+      description: "Task description",
+      dueDate: "2024-12-25T12:00:00Z",
+    }),
   });
   return await response.json();
 };
 
 // Get all tasks
 const getTasks = async (status?: string) => {
-  const url = status ? `${BASE_URL}/tasks?status=${status}` : `${BASE_URL}/tasks`;
+  const url = status
+    ? `${BASE_URL}/tasks?status=${status}`
+    : `${BASE_URL}/tasks`;
   const response = await fetch(url);
   return await response.json();
 };
@@ -394,9 +417,9 @@ const getTask = async (id: string) => {
 // Update task
 const updateTask = async (id: string, updates: any) => {
   const response = await fetch(`${BASE_URL}/tasks/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(updates)
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updates),
   });
   return await response.json();
 };
@@ -404,7 +427,7 @@ const updateTask = async (id: string, updates: any) => {
 // Delete task
 const deleteTask = async (id: string) => {
   const response = await fetch(`${BASE_URL}/tasks/${id}`, {
-    method: 'DELETE'
+    method: "DELETE",
   });
   return response.status === 204;
 };
@@ -415,7 +438,7 @@ const deleteTask = async (id: string) => {
 ```python
 import requests
 
-BASE_URL = 'http://localhost:3000'
+BASE_URL = 'http://localhost:3001'
 
 # Create task
 def create_task(title, description=None, due_date=None):
@@ -477,9 +500,9 @@ For issues, questions, or contributions, please refer to the project repository.
 ## Changelog
 
 ### Version 1.0.0
+
 - Initial release
 - CRUD operations for tasks
 - Status filtering
 - Automatic notifications for tasks due within 24 hours
 - Swagger/OpenAPI documentation
-

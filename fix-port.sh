@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Script to fix port 3000 conflict
+# Script to fix port 3001 conflict
 
-PORT=3000
+PORT=3001
 
 echo "🔍 Checking what's using port $PORT..."
 
-# Find process using port 3000
+# Find process using port 3001
 PID=$(lsof -ti:$PORT 2>/dev/null)
 
 if [ -z "$PID" ]; then

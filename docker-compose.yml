@@ -35,9 +35,9 @@ services:
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-taskdb}
       REDIS_URL: redis://redis:6379
-      PORT: ${PORT:-3000}
+      PORT: ${PORT:-3001}
     ports:
-      - "${PORT:-3000}:3000"
+      - "${PORT:-3001}:3001"
     depends_on:
       postgres:
         condition: service_healthy

@@ -11,7 +11,7 @@ FROM base AS production
 COPY --from=install /app/node_modules ./node_modules
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3001
 CMD ["bun", "run", "src/index.ts"]
 
 

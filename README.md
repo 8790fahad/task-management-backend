@@ -129,11 +129,11 @@ DELETE /tasks/:id
    bun run dev
    ```
 
-The server will start on `http://localhost:3000`
+The server will start on `http://localhost:3001`
 
 ### API Documentation
 
-Swagger documentation is available at: `http://localhost:3000/swagger`
+Swagger documentation is available at: `http://localhost:3001/swagger`
 
 ## Project Structure
 
@@ -175,7 +175,7 @@ Example using curl:
 
 ```bash
 # Create a task
-curl -X POST http://localhost:3000/tasks \
+curl -X POST http://localhost:3001/tasks \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Test Task",
@@ -184,20 +184,20 @@ curl -X POST http://localhost:3000/tasks \
   }'
 
 # Get all tasks
-curl http://localhost:3000/tasks
+curl http://localhost:3001/tasks
 
 # Get task by ID
-curl http://localhost:3000/tasks/{id}
+curl http://localhost:3001/tasks/{id}
 
 # Update task
-curl -X PUT http://localhost:3000/tasks/{id} \
+curl -X PUT http://localhost:3001/tasks/{id} \
   -H "Content-Type: application/json" \
   -d '{
     "status": "completed"
   }'
 
 # Delete task
-curl -X DELETE http://localhost:3000/tasks/{id}
+curl -X DELETE http://localhost:3001/tasks/{id}
 ```
 
 ## Design Principles
